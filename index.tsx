@@ -190,6 +190,7 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
         return (
             <View pointerEvents="none" key={index + "view"} testID="inputSlotView">
                 <TextInput
+                    caretHidden
                     testID="textInput"
                     underlineColorAndroid='rgba(0,0,0,0)'
                     style={selectedIndex === index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}
