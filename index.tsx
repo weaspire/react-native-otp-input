@@ -1,7 +1,8 @@
 /// <reference path="index.d.ts" />
 import { InputProps, OTPInputViewState } from '@twotalltotems/react-native-otp-input';
 import React, { Component } from 'react'
-import { View, TextInput, TouchableWithoutFeedback, Clipboard, Keyboard, Platform, I18nManager, EmitterSubscription, } from 'react-native'
+import { View, TextInput, TouchableWithoutFeedback, Keyboard, Platform, I18nManager, EmitterSubscription, } from 'react-native'
+import Clipboard from '@react-native-community/clipboard';
 import styles from './styles'
 import { isAutoFillSupported } from './helpers/device'
 import { codeToArray } from './helpers/codeToArray'
@@ -11,6 +12,7 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
         pinCount: 6,
         autoFocusOnLoad: true,
         secureTextEntry: false,
+        editable: true,
         keyboardAppearance: "default",
         keyboardType: "number-pad",
         clearInputs: false,
@@ -180,7 +182,7 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
     }
 
     renderOneInputField = (_: TextInput, index: number) => {
-        const { codeInputFieldStyle, codeInputHighlightStyle, secureTextEntry, keyboardType, selectionColor, keyboardAppearance } = this.props
+        const { codeInputFieldStyle, codeInputHighlightStyle, secureTextEntry, editable, keyboardType, selectionColor, keyboardAppearance } = this.props
         const { defaultTextFieldStyle } = styles
         const { selectedIndex, digits } = this.state
         const { clearInputs, placeholderCharacter, placeholderTextColor } = this.props
@@ -203,6 +205,7 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
                     key={index}
                     selectionColor={selectionColor}
                     secureTextEntry={secureTextEntry}
+                    editable={editable}
                     placeholder={placeholderCharacter}
                     placeholderTextColor={placeholderTextColor || defaultPlaceholderTextColor}
                 />
